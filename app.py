@@ -67,6 +67,7 @@ if page == "Home":
         st.image(logo_path, width=150)
     st.title("🏫 Welcome to Student Result Management System")
     st.write("Manage students, record marks, and generate result reports easily!")
+    st.write("Developed by Muhammad Bin Maqsood")
 
 # --------------------------
 # Add Student Page
@@ -263,3 +264,4 @@ elif page == "About":
     st.header("ℹ️ About")
     st.write("This Student Result Management App is built with **Streamlit**.")
     st.write("Developed to manage marks, calculate grades, and display results in a clean format.")
+    st.write("Developed by Muhammad Bin Maqsood")
