@@ -262,6 +262,5 @@ elif page == "About":
     if os.path.exists(about_img_path):
         st.image(about_img_path, width=100)
     st.header("ℹ️ About")
-    st.write("This Student Result Management App is built with **Streamlit**.")
     st.write("Developed to manage marks, calculate grades, and display results in a clean format.")
     st.write("Developed by Muhammad Bin Maqsood")
