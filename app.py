@@ -31,17 +31,19 @@ def calculate_grade(percentage):
         return "B+"
     elif percentage >= 60:
         return "B"
-     elif percentage >= 50:
+    elif percentage >= 50:
         return "C+"
-     elif percentage >= 40:
+    elif percentage >= 40:
         return "C"
-     elif percentage >= 33:
+    elif percentage >= 33:
         return "D"
     else:
         return "F"
 
 def calculate_status(grade):
-    if grade in ["A+", "A", "B", "C"]:
+    if grade in ["A+", "A", "B", "C", "B+", "C+"]:
+        return "Pass"
+    elif grade == "D":
         return "Pass"
     else:
         return "Fail"
@@ -169,11 +171,9 @@ elif page == "Results":
 
     if df is not None and not df.empty:
         for _, row in df.iterrows():
-            # Student Image
             if os.path.exists(student_icon_path):
                 st.image(student_icon_path, width=100)
 
-            # Student Info: Student Name, Father Name, Roll No, Session
             st.markdown(f"""
                 <div style="text-align:left; font-size:18px; font-weight:bold; margin-bottom:10px;">
                     Student Name: {row['Name']} <br>
@@ -183,7 +183,6 @@ elif page == "Results":
                 </div>
             """, unsafe_allow_html=True)
 
-            # Subject-wise details
             student_rows = []
             total_obtained = 0
             total_max = 0
@@ -204,11 +203,10 @@ elif page == "Results":
                 })
 
             df_student = pd.DataFrame(student_rows)
-
-            # Add overall row
             overall_percentage = round((total_obtained / total_max) * 100, 2)
             overall_grade = calculate_grade(overall_percentage)
             overall_status = calculate_status(overall_grade)
+
             df_overall = pd.DataFrame([{
                 "Subject": "Overall",
                 "Marks": total_obtained,
@@ -220,9 +218,6 @@ elif page == "Results":
 
             df_final = pd.concat([df_student, df_overall], ignore_index=True)
 
-            # --------------------------
-            # Display dark table with black bold text in columns
-            # --------------------------
             st.markdown(
                 df_final.to_html(index=False, escape=False),
                 unsafe_allow_html=True
