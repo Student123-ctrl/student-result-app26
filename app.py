@@ -28,9 +28,15 @@ def calculate_grade(percentage):
     elif percentage >= 80:
         return "A"
     elif percentage >= 70:
-        return "B"
+        return "B+"
     elif percentage >= 60:
+        return "B"
+     elif percentage >= 60:
+        return "C+"
+     elif percentage >= 60:
         return "C"
+     elif percentage >= 60:
+        return "D"
     else:
         return "F"
 
